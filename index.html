@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+	<head>
+		<title>D2L HTML Query</title>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
+		<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
+		<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js'></script>
+		<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js'></script>
+		<script type="text/javascript" src="build/query.js"></script>
+	</head>
+	<body ng-controller='mainCtrl'>
+		<br><br><br>
+		<div class="ui container">
+			<div class="ui fluid search selection dropdown">
+				<input type="hidden" name="country">
+				<i class="dropdown icon"></i>
+				<div class="default text">Select Query</div>
+				<div class="menu">
+					<div class="item" data-value='createNew'>Create a New Query</div>
+					<div class="item" data-value="{{query.value}}" ng-repeat='query in queries'>{{query.name}}</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class="ui one column stackable center aligned page grid">
+		   <div class="column twelve wide">
+		       <div class="ui button green center-aligned" ng-click='loadFile()'>Load Zip</div>
+		       <div class="ui button blue" ng-click='export()'>Export as CSV</div>
+		       <input type='file' style='display:none' id="file">
+		   </div>
+		</div>
+
+		<div class="ui one column stackable center aligned page grid">
+		   <div class="column twelve wide">
+		       <table class="ui celled striped table">
+		       		<thead>
+		       			<tr>
+		       				<th>Name</th>
+		       				<th>Result</th>
+		       			</tr>
+		       		</thead>
+		       		<tbody>
+		       			<tr ng-repeat='q in queried'>
+		       				<td>{{q.zip.name}}</td>
+		       				<td>{{q.results.length}}</td>
+		       			</tr>
+		       		</tbody>
+		       </table>
+		   </div>
+		</div>
+
+	</body>
+</html>
