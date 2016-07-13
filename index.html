@@ -17,7 +17,7 @@
 				<div class="default text">Select Query</div>
 				<div class="menu">
 					<div class="item" data-value='createNew'>Create a New Query</div>
-					<div class="item" data-value="{{query.value}}" ng-repeat='query in queries'>{{query.name}}</div>
+					<div class="item" data-value="{{$index}}" ng-repeat='query in queries'>{{query.name}}</div>
 				</div>
 			</div>
 		</div>
@@ -40,9 +40,24 @@
 		       			</tr>
 		       		</thead>
 		       		<tbody>
-		       			<tr ng-repeat='q in queried'>
+		       			<tr ng-repeat='q in queried track by $index'>
 		       				<td>{{q.zip.name}}</td>
-		       				<td>{{q.results.length}}</td>
+		       				<td>
+		       					<table class="ui celled striped table">
+		       						<thead>
+		       							<tr>
+		       								<th>Index</th>
+		       								<th>Location</th>
+		       							</tr>
+		       						</thead>
+		       						<tbody>
+		       							<tr ng-repeat='r in q.results track by $index'>
+		       								<td>{{$index}}</td>
+		       								<td>{{r}}</td>
+		       							</tr>
+		       						</tbody>
+		       					</table>
+		       				</td>
 		       			</tr>
 		       		</tbody>
 		       </table>
